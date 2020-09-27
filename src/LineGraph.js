@@ -51,7 +51,7 @@ const options = {
 
 
 // Makes data chart.js friendly [{obj},{obj},{obj}...] 
-const buildChartData = (data, casesType="cases") => {
+const buildChartData = (data, casesType) => {
     const chartData = []
     let lastDataPoint
 
@@ -68,7 +68,7 @@ const buildChartData = (data, casesType="cases") => {
     return chartData
 }
 
-function LineGraph() {
+function LineGraph({ casesType, ...props }) {
     const [data, setData] = useState({})
 
     useEffect(() => {
@@ -76,16 +76,16 @@ function LineGraph() {
             await fetch("https://disease.sh/v3/covid-19/historical/all?lastdays=120")
             .then(response => response.json())
             .then(data => {
-                let chartData = buildChartData(data, "cases")
+                let chartData = buildChartData(data, casesType)
                 setData(chartData)
                 console.log(chartData)
             })
         }
         fetchData()
-    }, [])
+    }, [casesType])
 
     return (
-        <div className="lineGraph">
+        <div className={props.className}>
             {data?.length > 0 && (
                 <Line 
                     options={options}

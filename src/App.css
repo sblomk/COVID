@@ -12,11 +12,30 @@ body {
   flex: 0.9;
 }
 
+.app__right {
+  display: flex;
+  flex-direction: column;
+}
+
+.app__right .MuiCardContent-root {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.app__graph {
+  flex-grow: 1;
+}
+
 .app__header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 20px;
+}
+
+.app__header > h1 {
+  color: #555;
 }
 
 .app__stats {
@@ -26,6 +45,7 @@ body {
 
 .app__rightH3 {
   margin-top: 10px;
+  margin-left: 10px;
 }
 
 @media (max-width: 800px) {
